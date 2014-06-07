@@ -19,7 +19,7 @@ class Str
 
     public function upper()
     {
-        return new String(\strtoupper($this->s));
+        return new Str(\strtoupper($this->s));
     }
 
 }
