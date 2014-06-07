@@ -29,7 +29,7 @@ class Str
 
     public function add(Str $s2)
     {
-        return new Str($this->s + $s2);
+        return new Str($this->s . $s2);
     }
 
 }
