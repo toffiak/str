@@ -19,7 +19,17 @@ class Str
 
     public function upper()
     {
-        return new Str(\strtoupper($this->s));
+        return new Str(\mb_strtoupper($this->s));
+    }
+
+    public function lower()
+    {
+        return new Str(\mb_strtolower($this->s));
+    }
+
+    public function add(Str $s2)
+    {
+        return new Str($this->s + $s2);
     }
 
 }
