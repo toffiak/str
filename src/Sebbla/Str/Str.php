@@ -6,10 +6,12 @@ class Str
 {
 
     private $s;
+    private $encoding;
 
-    function __construct($s)
+    function __construct($s, $encoding = "UTF-8")
     {
         $this->s = $s;
+        $this->encoding = $encoding;
     }
 
     public function __toString()
