@@ -25,5 +25,14 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $s2 = new Str(' Piłsudski');
         $this->assertEquals('Józef Piłsudski', $s1->add($s2));
     }
+    
+    public function testContais()
+    {
+        $s1 = new Str('Ala ma kota');
+        $this->assertSame(true, $s1->contains('la'));
+        $s2 = new Str('Zielona gęśk');
+        $this->assertSame(true, $s2->contains('ęś'));
+//        $s2 = new Str(' Piłsudski');
+    }
 
 }

@@ -34,4 +34,16 @@ class Str
         return new Str($this->s . $s2);
     }
 
+    public function contains($s)
+    {
+
+        if ($s instanceof \Sebbla\Str) {
+            if (false !== \strpos($this->s, $s)) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
 }
