@@ -101,4 +101,12 @@ class Str implements \Countable
         return $this->count();
     }
 
+    public function capitalize()
+    {
+        return new Str(
+                \mb_strtoupper(\mb_substr($this->s, 0, 1, $this->encoding), $this->encoding) .
+                \mb_strtolower(\mb_substr($this->s, 1, $this->len(), $this->encoding), $this->encoding)
+        );
+    }
+
 }

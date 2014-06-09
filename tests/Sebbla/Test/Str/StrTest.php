@@ -44,4 +44,14 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(false, ($s1 === $s2));
     }
 
+    public function testCapitalize()
+    {
+        $s1 = "lódka PodwoDNA";
+        $this->assertEquals('Łódka podwodna', $s1->capitalize());
+        $s2 = "ó";
+        $this->assertEquals('Ó', $s2->capitalize());
+        $s3 = "";
+        $this->assertEquals('', $s3->capitalize());
+    }
+
 }
