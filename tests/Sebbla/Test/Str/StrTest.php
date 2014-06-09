@@ -46,11 +46,11 @@ class StrTest extends \PHPUnit_Framework_TestCase
 
     public function testCapitalize()
     {
-        $s1 = "lódka PodwoDNA";
+        $s1 = new Str("łódka PodwoDNA");
         $this->assertEquals('Łódka podwodna', $s1->capitalize());
-        $s2 = "ó";
+        $s2 = new Str("ó");
         $this->assertEquals('Ó', $s2->capitalize());
-        $s3 = "";
+        $s3 = new Str("");
         $this->assertEquals('', $s3->capitalize());
     }
 
