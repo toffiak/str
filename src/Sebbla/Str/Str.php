@@ -2,7 +2,7 @@
 
 namespace Sebbla\Str;
 
-class Str
+class Str implements \Countable
 {
 
     private $s;
@@ -41,6 +41,21 @@ class Str
         }
 
         return false;
+    }
+
+    public function count()
+    {
+        return \mb_strlen($this->s, $this->encoding);
+    }
+
+    /**
+     * Proxy method for count() method.
+     * 
+     * @return inetegr
+     */
+    public function len()
+    {
+        return $this->count();
     }
 
 }
