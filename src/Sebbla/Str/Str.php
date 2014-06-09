@@ -20,6 +20,16 @@ class Str implements \Countable
     }
 
     /**
+     * Returnign raw value.
+     * 
+     * @return mixed
+     */
+    public function getRaw()
+    {
+        return $this->s;
+    }
+
+    /**
      * Copy and uppercase string.
      *  
      * @return \Sebbla\Str\Str
@@ -58,6 +68,12 @@ class Str implements \Countable
      */
     public function contains($s)
     {
+        if ($s instanceof \Sebbla\Str\Str) {
+            $s = $s->getRaw();
+            if (true == \strpos($this->s, $s)) {
+                return true;
+            }
+        }
         if (true == \strpos($this->s, $s)) {
             return true;
         }
