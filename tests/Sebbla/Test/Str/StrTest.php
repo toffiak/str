@@ -34,4 +34,12 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(true, $s2->contains('ęś'));
     }
 
+    public function testEqual()
+    {
+        $s1 = new Str('Ala ma kota');
+        $s2 = new Str('Ala ma kota');
+        $this->assertSame(true, ($s1 == s2));
+        $this->assertSame(false, ($s2 === s2));
+    }
+
 }
