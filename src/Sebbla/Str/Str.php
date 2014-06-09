@@ -21,12 +21,12 @@ class Str
 
     public function upper()
     {
-        return new Str(\mb_strtoupper($this->s));
+        return new Str(\mb_strtoupper($this->s, $this->encoding));
     }
 
     public function lower()
     {
-        return new Str(\mb_strtolower($this->s));
+        return new Str(\mb_strtolower($this->s, $this->encoding));
     }
 
     public function add(Str $s2)
