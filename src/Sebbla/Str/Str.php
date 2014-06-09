@@ -36,11 +36,8 @@ class Str
 
     public function contains($s)
     {
-
-        if ($s instanceof \Sebbla\Str) {
-            if (false !== \strpos($this->s, $s)) {
-                return false;
-            }
+        if (false !== \strpos($this->s, $s)) {
+            return false;
         }
 
         return true;
