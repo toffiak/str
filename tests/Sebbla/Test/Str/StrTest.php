@@ -26,7 +26,7 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Józef Piłsudski', $s1->add($s2));
     }
 
-    public function testContais()
+    public function testContains()
     {
         $s1 = new Str('Ala ma kota');
         $this->assertSame(true, $s1->contains('la'));

@@ -36,11 +36,11 @@ class Str
 
     public function contains($s)
     {
-        if (false !== \strpos($this->s, $s)) {
-            return false;
+        if (true == \strpos($this->s, $s)) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
 }
