@@ -104,7 +104,7 @@ class Str
         );
     }
 
-    public function center($width, $fillchar)
+    public function center($width = 0, $fillchar = ' ')
     {
         if ($width <= \mb_strlen($this->s)) {
             return new Str($this->s);

@@ -65,6 +65,7 @@ class StrTest extends \PHPUnit_Framework_TestCase
     public function testCenter()
     {
         $s1 = new Str('foo');
+        $this->assertEquals('foo', $s1->center());
         $this->assertEquals('foo', $s1->center(2));
         $this->assertEquals('-foo', $s1->center(4, '-'));
         $this->assertEquals('####foo###', $s1->center(10, '#'));
