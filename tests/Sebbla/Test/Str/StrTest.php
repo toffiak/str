@@ -54,4 +54,20 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('', $s3->capitalize());
     }
 
+    public function testLen()
+    {
+        $s1 = new Str("Foo");
+        $this->assertSame(3, $s1->len());
+        $s2 = new Str("Roślina lecznicza: rzeżucha");
+        $this->assertSame(27, $s2->len());
+    }
+
+    public function testCenter()
+    {
+        $s1 = new Str('foo');
+        $this->assertEquals('foo', $s1->center(2));
+        $this->assertEquals('-foo', $s1->center(4, '-'));
+        $this->assertEquals('####foo###', $s1->center(10, '#'));
+    }
+
 }

@@ -2,7 +2,7 @@
 
 namespace Sebbla\Str;
 
-class Str implements \Countable
+class Str
 {
 
     private $s;
@@ -84,29 +84,43 @@ class Str implements \Countable
     /**
      * Counting number of chars in string.
      * 
-     * @return inetegr
+     * @return integr
      */
-    public function count()
+    public function len()
     {
         return \mb_strlen($this->s, $this->encoding);
     }
 
     /**
-     * Proxy method for count() method.
+     * Capitalizing string, first char uppercase rest lowercase.
      * 
-     * @return inetegr
+     * @return \Sebbla\Str\Str
      */
-    public function len()
-    {
-        return $this->count();
-    }
-
     public function capitalize()
     {
         return new Str(
                 \mb_strtoupper(\mb_substr($this->s, 0, 1, $this->encoding), $this->encoding) .
                 \mb_strtolower(\mb_substr($this->s, 1, $this->len(), $this->encoding), $this->encoding)
         );
+    }
+
+    public function center($width, $fillchar)
+    {
+        if ($width <= \mb_strlen($this->s)) {
+            return new Str($this->s);
+        }
+        $newString = $this->s;
+        $missingChars = $width - $this->len();
+        $left = \round($missingChars / 2);
+        $right = $missingChars - $left;
+        for ($i = 0; $i < $left; $i++) {
+            $newString = $fillchar . $newString;
+        }
+        for ($j = 0; $j < $right; $j++) {
+            $newString.= $fillchar;
+        }
+
+        return new Str($newString, $this->encoding);
     }
 
 }
