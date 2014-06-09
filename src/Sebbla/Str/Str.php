@@ -19,21 +19,43 @@ class Str implements \Countable
         return (string) $this->s;
     }
 
+    /**
+     * Copy and uppercase string.
+     *  
+     * @return \Sebbla\Str\Str
+     */
     public function upper()
     {
         return new Str(\mb_strtoupper($this->s, $this->encoding));
     }
 
+    /**
+     * Copy and lowercase string.
+     * 
+     * @return \Sebbla\Str\Str
+     */
     public function lower()
     {
         return new Str(\mb_strtolower($this->s, $this->encoding));
     }
 
+    /**
+     * Adding two string.
+     * 
+     * @param \Sebbla\Str\Str $s2
+     * @return \Sebbla\Str\Str
+     */
     public function add(Str $s2)
     {
         return new Str($this->s . $s2);
     }
 
+    /**
+     * Checking if string contains string.
+     * 
+     * @param string|\Sebbls\Str\Str $s
+     * @return boolean
+     */
     public function contains($s)
     {
         if (true == \strpos($this->s, $s)) {
@@ -43,6 +65,11 @@ class Str implements \Countable
         return false;
     }
 
+    /**
+     * Counting number of chars in string.
+     * 
+     * @return inetegr
+     */
     public function count()
     {
         return \mb_strlen($this->s, $this->encoding);
