@@ -8,7 +8,6 @@ use Sebbla\Str\Slice;
 class Str extends Type
 {
 
-    private $s;
     private $encoding;
 
     function __construct($s, $encoding = "UTF-8")
