@@ -53,10 +53,10 @@ class Slice implements Sliceable
             throw new \ErrorException('step cannot be 0');
         }
 
-        if ($$this->start === null) {
-            $$this->start = $this->step < 0 ? $length - 1 : 0;
+        if ($this->start === null) {
+            $this->start = $this->step < 0 ? $length - 1 : 0;
         } else {
-            $$this->start = $this->adjustEndpoint($length, $$this->start, $this->step);
+            $this->start = $this->adjustEndpoint($length, $this->start, $this->step);
         }
 
         if ($this->stop === null) {
@@ -66,7 +66,7 @@ class Slice implements Sliceable
         }
 
         // slice_indices()
-        $i = $$this->start;
+        $i = $this->start;
         while ($this->step < 0 ? ($i > $this->stop) : ($i < $this->stop)) {
             $sliced [] = $this->type[$i];
             $i += $this->step;

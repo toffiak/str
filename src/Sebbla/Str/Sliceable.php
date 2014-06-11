@@ -12,5 +12,5 @@ interface Sliceable
      * @param type $end
      * @param type $step
      */
-    public function slice($start = 0, $end = null, $step = 1);
+    public function slice();
 }
