@@ -71,4 +71,17 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('####foo###', $s1->center(10, '#'));
     }
 
+    public function testAsArray()
+    {
+        $s1 = new Str("Grzegorz Brzęczyszczykiewicz");
+        $expectedS1 = array('G', 'r', 'z', 'e', 'g', 'o', 'r', 'z', ' ', 'B', 'r', 'z', 'ę', 'c', 'z', 'y', 's', 'z', 'c', 'z', 'y', 'k', 'i', 'e', 'w', 'i', 'c', 'z');
+        $this->assertSame($expectedS1, $s1->asArray());
+        $s2 = new Str("火车票");
+        $expectedS2 = array('火', '车', '票');
+        $this->assertSame($expectedS2, $s2->asArray());
+        $s3 = new Str("");
+        $expectedS3 = array();
+        $this->assertSame($expectedS3, $s3->asArray());
+    }
+
 }
