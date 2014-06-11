@@ -153,7 +153,7 @@ class Str extends Type
     {
         $sliced = $this->slice($start, $end);
 
-        return $suffix === "" || \mb_substr($sliced, - \mb_strlen($suffix, $this->encoding)) === $suffix;
+        return $suffix === "" || \mb_substr($sliced, - \mb_strlen($suffix, $this->encoding), $this->encoding) === $suffix;
     }
 
 }
