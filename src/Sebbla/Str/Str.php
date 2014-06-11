@@ -132,11 +132,6 @@ class Str extends Type
         return new Str($newString, $this->encoding);
     }
 
-    public function endsWith($s, $start = 0, $end = null)
-    {
-        throw new \ErrorException('not yet implemented');
-    }
-
     public function asArray()
     {
         if (null === $this->sAsArray) {
@@ -152,6 +147,13 @@ class Str extends Type
         $sliced = $slice->slice();
 
         return new Str(\join('', $sliced));
+    }
+
+    function endsWith($suffix, $start = 0, $end = null)
+    {
+        $sliced = $this->slice($start, $end);
+
+        return $suffix === "" || \mb_substr($sliced, - \mb_strlen($suffix, $this->encoding)) === $suffix;
     }
 
 }
