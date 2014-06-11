@@ -135,7 +135,7 @@ class Str extends Type
     public function asArray()
     {
         if (null === $this->sAsArray) {
-            $this->sAsArray = \preg_split('/(?<!^)(?!$)/u', $this->s);
+            $this->sAsArray = \preg_split('/(?<!^)(?!$)/u', $this->s, null, PREG_SPLIT_NO_EMPTY);
         }
 
         return $this->sAsArray;
