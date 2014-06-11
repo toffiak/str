@@ -146,7 +146,7 @@ class Str extends Type
         return $this->sAsArray;
     }
 
-    public function slice($start, $stop, $step)
+    public function slice($start = null, $stop = null, $step = 1)
     {
         $slice = new Slice($this->sAsArray, $start, $stop, $step);
         $sliced = $slice->slice();
