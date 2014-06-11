@@ -12,8 +12,8 @@ class Str extends Type
 
     function __construct($s, $encoding = "UTF-8")
     {
-        $this->s = \mb_convert_encoding($s, $encoding);
         $this->encoding = $encoding;
+        $this->s = ( $this->encoding === \mb_detect_encoding($s) ) ? $s : \mb_convert_encoding($s, $encoding);
     }
 
     public function __toString()
