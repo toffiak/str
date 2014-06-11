@@ -139,7 +139,7 @@ class Str extends Type
 
     public function asArray()
     {
-        if (null === $this->asArray()) {
+        if (null === $this->sAsArray) {
             $this->sAsArray = \preg_split('/(?<!^)(?!$)/u', $this->s);
         }
 
@@ -148,7 +148,7 @@ class Str extends Type
 
     public function slice($start = null, $stop = null, $step = 1)
     {
-        $slice = new Slice($this->sAsArray, $start, $stop, $step);
+        $slice = new Slice($this->asArray(), $start, $stop, $step);
         $sliced = $slice->slice();
 
         return new Str(\join('', $sliced));
