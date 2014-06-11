@@ -2,7 +2,10 @@
 
 namespace Sebbla\Str;
 
-class Str
+use Sebbla\Str\Type;
+use Sebbla\Str\Slice;
+
+class Str extends Type
 {
 
     private $s;
@@ -10,7 +13,7 @@ class Str
 
     function __construct($s, $encoding = "UTF-8")
     {
-        $this->s = $s;
+        $this->s = \mb_convert_encoding($s, $encoding);
         $this->encoding = $encoding;
     }
 
@@ -84,7 +87,7 @@ class Str
     /**
      * Counting number of chars in string.
      * 
-     * @return integr
+     * @return integer
      */
     public function len()
     {
@@ -104,6 +107,13 @@ class Str
         );
     }
 
+    /**
+     * Centering string.
+     * 
+     * @param integer $width
+     * @param char $fillchar
+     * @return \Sebbla\Str\Str
+     */
     public function center($width = 0, $fillchar = ' ')
     {
         if ($width <= \mb_strlen($this->s)) {
@@ -121,6 +131,28 @@ class Str
         }
 
         return new Str($newString, $this->encoding);
+    }
+
+    public function endsWith($s, $start = 0, $end = null)
+    {
+        throw new \ErrorException('not yet implemented');
+    }
+
+    public function asArray()
+    {
+        if (null === $this->asArray()) {
+            $this->sAsArray = \preg_split('/(?<!^)(?!$)/u', $this->s);
+        }
+
+        return $this->sAsArray;
+    }
+
+    public function slice($start, $stop, $step)
+    {
+        $slice = new Slice($this->sAsArray, $start, $stop, $step);
+        $sliced = $slice->slice();
+
+        return new Str(\join('', $sliced));
     }
 
 }
