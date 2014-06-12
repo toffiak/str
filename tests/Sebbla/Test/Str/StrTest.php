@@ -95,9 +95,9 @@ class StrTest extends \PHPUnit_Framework_TestCase
     public function testEndsWith()
     {
         $s1 = new Str("Grzegorz Brzęczyszczykiewicz");
-        $this->assertEquals("Grzegorz Brzę", $s1->endsWith("wicz"));
-        $this->assertEquals("rzę", $s1->endswith(10, 13));
-        $this->assertEquals("ykiew ", $s1->endsWith(20, -3));
+        $this->assertSame(true, $s1->endsWith("wicz"));
+        $this->assertSame(true, $s1->endswith("rzę", 10, 13));
+        $this->assertSame(true, $s1->endsWith("ykiew", 20, -3));
     }
 
 }
