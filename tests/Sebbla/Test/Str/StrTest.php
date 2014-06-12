@@ -84,4 +84,12 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expectedS3, $s3->asArray());
     }
 
+    public function testSlice()
+    {
+        $s1 = new Str("Grzegorz Brzęczyszczykiewicz");
+        $this->assertEquals("Grzegorz Brzę", $s1->slice(null, 13));
+        $this->assertEquals("rzę", $s1->slice(10, 13));
+        $this->assertEquals("r rgzG", $s1->slice(10, null, -2));
+    }
+
 }
