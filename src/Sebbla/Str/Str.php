@@ -132,6 +132,11 @@ class Str extends Type
         return new Str($newString, $this->encoding);
     }
 
+    /**
+     * Returning string as array.
+     * 
+     * @return array
+     */
     public function asArray()
     {
         if (null === $this->sAsArray) {
@@ -141,6 +146,14 @@ class Str extends Type
         return $this->sAsArray;
     }
 
+    /**
+     * Slicing string and returning new instance of class Str
+     * 
+     * @param null|integer $start
+     * @param null|integer $stop
+     * @param integer $step
+     * @return \Sebbla\Str\Str
+     */
     public function slice($start = null, $stop = null, $step = 1)
     {
         $slice = new Slice($this->asArray(), $start, $stop, $step);
@@ -149,6 +162,14 @@ class Str extends Type
         return new Str(\join('', $sliced));
     }
 
+    /**
+     * Checking if string ends with a given suffix.
+     * 
+     * @param string $suffix
+     * @param integer $start
+     * @param null|integer $end
+     * @return boolean
+     */
     function endsWith($suffix, $start = 0, $end = null)
     {
         $sliced = $this->slice($start, $end);
