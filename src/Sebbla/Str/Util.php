@@ -12,7 +12,7 @@ class Util
      * @param type $insert
      * @param type $position
      */
-    public static function arrayInsert(&$array, $insert, $position)
+    public static function arrayInsert(array $array, $insert, $position)
     {
         \settype($array, "array");
         \settype($insert, "array");
@@ -28,6 +28,8 @@ class Util
                 $array = \array_merge($head, $insert, $tail);
             }
         }
+
+        return $array;
     }
 
 }
