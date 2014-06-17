@@ -126,7 +126,7 @@ class Foo:
         if age > 0:
             self.age = age
         else
-            tage= None
+            age= None
         
 def bar():
     pass
