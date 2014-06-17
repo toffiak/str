@@ -14,7 +14,10 @@ class Util
      */
     public static function arrayInsert(array $array, array $insert, $position)
     {
-        \settype($position, "int");
+        if (!\is_int($position)) {
+            throw new \InvalidArgumentException(\sprintf('Position argument must be integer, "%s" given.', $position));
+        }
+
         if ($position == 0) {
             $array = \array_merge($insert, $array);
         } else {
