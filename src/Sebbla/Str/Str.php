@@ -159,7 +159,7 @@ class Str extends Type
         $slice = new Slice($this->asArray(), $start, $stop, $step);
         $sliced = $slice->slice();
 
-        return new Str(\join('', $sliced));
+        return new Str(\join('', $sliced), $this->encoding);
     }
 
     /**
@@ -175,6 +175,29 @@ class Str extends Type
         $sliced = $this->slice($start, $end);
 
         return $suffix === "" || \mb_substr($sliced, - \mb_strlen($suffix, $this->encoding), \mb_strlen($sliced, $this->encoding), $this->encoding) === $suffix;
+    }
+
+    function expandTabs($tabSize = 4)
+    {
+        if ($tabSize < 1) {
+            return new Str($this->s, $this->encoding);
+        }
+
+        // Creating and filling insert array
+        $insert = array();
+        for ($j = 0; $j < $tabSize; $j++) {
+            $insert[] = ' ';
+        }
+
+        $asArray = $this->asArray();
+        for ($i = 0; $i < $this->len(); $i++) {
+            if ($asArray[$i] === "\t") {
+                unset($asArray[$i]);
+                Sebbla\Str\Util::arrayInsert($asArray, $insert, $i);
+            }
+        }
+
+        return new Str(\join('', $asArray), $this->encoding);
     }
 
 }
