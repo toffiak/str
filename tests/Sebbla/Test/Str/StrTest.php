@@ -135,7 +135,8 @@ if __name__ == '__main__':
     bar()
 TEXT;
         $s1 = new Str($s);
-        $this->assertEquals($expected, $s1->expandTabs());
+        $sExpanded = $s1->expandTabs();
+        $this->assertEquals($expected, $sExpanded);
     }
 
 }
