@@ -139,4 +139,19 @@ TEXT;
         $this->assertEquals($expected, $sExpanded);
     }
 
+    public function testFind()
+    {
+        $s = new Str('Piórnik z temperówką');
+        $this->assertSame(16, $s->find('ów'));
+        $this->assertSame(16, $s->find('ów', -6));
+        $this->assertSame(-1, $s->find('ów', -3));
+        $this->assertSame(2, $s->find('órnik', 2));
+        $this->assertSame(-1, $s->find('órnik', 3));
+        $this->assertSame(6, $s->find('k z', 5, 12));
+        $this->assertSame(6, $s->find('k z', 5, 99));
+        $this->assertSame(-1, $s->find('k z', 5, 7));
+        $this->assertSame(6, $s->find('k z', 5, -7));
+        $this->assertSame(6, $s->find('k z', -15, -11));
+    }
+
 }
