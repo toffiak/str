@@ -205,7 +205,7 @@ class Str extends Type
     public function find($sub, $start = 0, $end = null)
     {
         $slicedString = $this->slice($start, $end);
-        $subPositionInSlice = \strpos($slicedString, $sub);
+        $subPositionInSlice = \mb_strpos($slicedString, $sub, null, $this->encoding);
         if ($subPositionInSlice === false) {
             return -1;
         }
