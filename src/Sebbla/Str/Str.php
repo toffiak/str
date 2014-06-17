@@ -170,14 +170,14 @@ class Str extends Type
      * @param null|integer $end
      * @return boolean
      */
-    function endsWith($suffix, $start = 0, $end = null)
+    public function endsWith($suffix, $start = 0, $end = null)
     {
         $sliced = $this->slice($start, $end);
 
         return $suffix === "" || \mb_substr($sliced, - \mb_strlen($suffix, $this->encoding), \mb_strlen($sliced, $this->encoding), $this->encoding) === $suffix;
     }
 
-    function expandTabs($tabSize = 4)
+    public function expandTabs($tabSize = 4)
     {
         if ($tabSize < 1) {
             return new Str($this->s, $this->encoding);
@@ -200,6 +200,18 @@ class Str extends Type
         }
 
         return new Str(\join('', $asArray), $this->encoding);
+    }
+
+    public function find($sub, $start = 0, $end = null)
+    {
+        $slicedString = $this->slice($start, $end);
+        $subPositionInSlice = \strpos($slicedString, $sub);
+        if ($subPositionInSlice === false) {
+            return -1;
+        }
+        $position = $start < 0 ? $this->len() + $start + $subPositionInSlice : $start + $subPositionInSlice;
+
+        return $position;
     }
 
 }
