@@ -190,10 +190,12 @@ class Str extends Type
         }
 
         $asArray = $this->asArray();
-        for ($i = 0; $i < $this->len(); $i++) {
+        $len = count($asArray);
+        for ($i = 0; $i < $len; $i++) {
             if ($asArray[$i] === "\t") {
                 unset($asArray[$i]);
-                Sebbla\Str\Util::arrayInsert($asArray, $insert, $i);
+                $len+=($tabSize - 1);
+                \Sebbla\Str\Util::arrayInsert(&$asArray, $insert, $i);
             }
         }
 

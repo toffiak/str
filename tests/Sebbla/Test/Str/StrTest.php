@@ -100,4 +100,42 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertSame(true, $s1->endsWith("ykiew", 20, -3));
     }
 
+    public function testExpandTabs()
+    {
+        $s = <<<TEXT
+class Foo:
+\tdef __init__():
+\t\tpass
+\tdef setage(self, age):
+\t\tif age > 0:
+\t\t\tself.age = age
+\t\telse
+\t\t\tage= None
+        
+def bar():
+\tpass
+        
+if __name__ == '__main__':
+\tbar()
+TEXT;
+        $expected = <<<TEXT
+class Foo:
+    def __init__():
+        pass
+    def setage(self, age):
+        if age > 0:
+            self.age = age
+        else
+            tage= None
+        
+def bar():
+    pass
+        
+if __name__ == '__main__':
+    bar()
+TEXT;
+        $s1 = new Str($s);
+        $this->assertEquals($expected, $s1->expandTabs());
+    }
+
 }

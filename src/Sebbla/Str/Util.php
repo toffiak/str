@@ -12,10 +12,8 @@ class Util
      * @param type $insert
      * @param type $position
      */
-    public static function arrayInsert(array $array, $insert, $position)
+    public static function arrayInsert(array $array, array $insert, $position)
     {
-        \settype($array, "array");
-        \settype($insert, "array");
         \settype($position, "int");
         if ($position == 0) {
             $array = \array_merge($insert, $array);
