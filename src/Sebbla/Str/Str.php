@@ -243,4 +243,22 @@ class Str extends Type
         return new Str(\mb_convert_case($this->s, \MB_CASE_TITLE, $this->encoding), $this->encoding);
     }
 
+    /**
+     * Returning string with all upper characters converted to lowercase and vice versa.
+     * 
+     * @return \Sebbla\Str\Str
+     */
+    public function swapcase()
+    {
+        $asArray = $this->asArray();
+        $swapcased = array();
+        for ($i = 0; $i < $this->len(); $i++) {
+            $swapcased[$i] = \mb_strtolower($asArray[$i], $this->encoding) != $asArray[$i] ?
+                    \mb_strtolower($asArray[$i], $this->encoding) :
+                    \mb_strtoupper($asArray[$i], $this->encoding);
+        }
+
+        return new Str(\join('', $swapcased), $this->encoding);
+    }
+
 }
