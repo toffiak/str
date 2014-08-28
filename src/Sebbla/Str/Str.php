@@ -271,4 +271,24 @@ class Str extends Type
         return new Str(\trim($this->s), $this->encoding);
     }
 
+    /**
+     * Checking if all characters in string are uppercase.
+     * 
+     * @return boolean
+     */
+    public function isupper()
+    {
+        return 0 === \strcmp(\mb_strtoupper($this->s, $this->encoding), $this->s) ? true : false;
+    }
+
+    /**
+     * Checking if all characters in string are lowercase.
+     * 
+     * @return boolean
+     */
+    public function islower()
+    {
+        return 0 === \strcmp(\mb_strtolower($this->s, $this->encoding), $this->s) ? true : false;
+    }
+
 }
