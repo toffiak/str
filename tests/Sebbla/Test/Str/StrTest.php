@@ -154,4 +154,13 @@ TEXT;
         $this->assertSame(6, $s->find('k z', -15, -11));
     }
 
+    public function testZfill()
+    {
+        $s = new Str('Ala ma kota');
+        $this->assertSame('Pinokio', $s->zfill(-1));
+        $this->assertSame('Pinokio', $s->zfill(7));
+        $this->assertSame('0Pinokio', $s->zfill(8));
+        $this->assertSame('000Pinokio', $s->zfill(10));
+    }
+
 }

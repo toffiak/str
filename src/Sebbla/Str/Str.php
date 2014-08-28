@@ -214,4 +214,23 @@ class Str extends Type
         return $position;
     }
 
+    /**
+     * Adding additional zeros before string.
+     * 
+     * @param integer $width
+     * @return \Sebbla\Str\Str
+     */
+    public function zfill($width)
+    {
+        $width = (int) $width;
+        if ($this->len() >= $width) {
+            return new Str($this->s, $this->encoding);
+        }
+        $asArray = $this->asArray();
+        $arrayOfZeros = array_fill(0, $width - $this->len(), 0);
+        \Sebbla\Str\Util::arrayInsert(&$asArray, $arrayOfZeros, 0);
+
+        return new Str(\join('', $asArray), $this->encoding);
+    }
+
 }
