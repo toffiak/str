@@ -185,4 +185,24 @@ TEXT;
         $this->assertEquals("", $s->strip());
     }
 
+    public function testIsupper()
+    {
+        $s1 = new Str('telefon');
+        $this->assertSame(false, $s1->isupper());
+        $s2 = new Str('Telefon');
+        $this->assertSame(false, $s2->isupper());
+        $s3 = new Str('TELEFON');
+        $this->assertSame(true, $s3->isupper());
+    }
+
+    public function testIslower()
+    {
+        $s1 = new Str('żarówka');
+        $this->assertSame(true, $s1->islower());
+        $s2 = new Str('Żarówka');
+        $this->assertSame(false, $s2->islower());
+        $s3 = new Str('ŻARÓWKA');
+        $this->assertSame(false, $s3->islower());
+    }
+
 }
