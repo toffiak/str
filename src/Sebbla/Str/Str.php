@@ -261,4 +261,14 @@ class Str extends Type
         return new Str(\join('', $swapcased), $this->encoding);
     }
 
+    /**
+     * Returning string with removed whitespaces from beginning and end of string
+     * 
+     * @return \Sebbla\Str\Str
+     */
+    public function strip()
+    {
+        return new Str(\trim($this->s), $this->encoding);
+    }
+
 }

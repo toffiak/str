@@ -175,4 +175,14 @@ TEXT;
         $this->assertEquals('mAŁy SAmocHóD', $s->swapcase());
     }
 
+    public function testStrip()
+    {
+        $s = new Str('  jeżyk ');
+        $this->assertEquals('jeżyk', $s->strip());
+        $s = new Str('\tżycie');
+        $this->assertEquals('życie', $s->strip());
+        $s = new Str('\0');
+        $this->assertEquals('', $s->strip());
+    }
+
 }
