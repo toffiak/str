@@ -156,11 +156,11 @@ TEXT;
 
     public function testZfill()
     {
-        $s = new Str('Ala ma kota');
-        $this->assertSame('Pinokio', $s->zfill(-1));
-        $this->assertSame('Pinokio', $s->zfill(7));
-        $this->assertSame('0Pinokio', $s->zfill(8));
-        $this->assertSame('000Pinokio', $s->zfill(10));
+        $s = new Str('Pinokio');
+        $this->assertEquals('Pinokio', $s->zfill(-1));
+        $this->assertEquals('Pinokio', $s->zfill(7));
+        $this->assertEquals('0Pinokio', $s->zfill(8));
+        $this->assertEquals('000Pinokio', $s->zfill(10));
     }
 
 }
