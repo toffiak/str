@@ -166,7 +166,7 @@ TEXT;
     public function testTitle()
     {
         $s = new Str('żaba w jeziorze pływa ładnIE');
-        $this->assertEquals('Żaba W Jeziorze Pływa ŁadnIE', $s->title());
+        $this->assertEquals('Żaba W Jeziorze Pływa Ładnie', $s->title());
     }
 
 }
