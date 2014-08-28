@@ -240,7 +240,7 @@ class Str extends Type
      */
     public function title()
     {
-        return new Str(\mb_convert_case($this->s, \MB_CASE_TITLE, $this->encoding));
+        return new Str(\mb_convert_case($this->s, \MB_CASE_TITLE, $this->encoding), $this->encoding);
     }
 
 }
