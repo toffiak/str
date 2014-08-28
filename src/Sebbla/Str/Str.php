@@ -233,4 +233,14 @@ class Str extends Type
         return new Str(\join('', $asArray), $this->encoding);
     }
 
+    /**
+     * Returning titlecased version of a given string.
+     * 
+     * @return \Sebbla\Str\Str
+     */
+    public function title()
+    {
+        return new Str(\mb_convert_case($this->s, \MB_CASE_TITLE, $this->encoding));
+    }
+
 }

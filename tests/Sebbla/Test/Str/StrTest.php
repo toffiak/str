@@ -163,4 +163,10 @@ TEXT;
         $this->assertEquals('000Pinokio', $s->zfill(10));
     }
 
+    public function testTitle()
+    {
+        $s = new Str('żaba w jeziorze pływa ładnIE');
+        $this->assertEquals('Żaba W Jeziorze Pływa ŁadnIE', $s->title());
+    }
+
 }
