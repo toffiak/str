@@ -169,4 +169,10 @@ TEXT;
         $this->assertEquals('Żaba W Jeziorze Pływa Ładnie', $s->title());
     }
 
+    public function testSwapcase()
+    {
+        $s = new Str('MałY saMOChÓd');
+        $this->assertEquals('mAŁy SAmocHóD', $s->swapcase());
+    }
+
 }
