@@ -112,11 +112,61 @@ class Str extends Type
      */
     public function eq($s)
     {
-        if (!$this->isNativeString($s)) {
-            return $this->getRaw() === $s->getRaw();
-        }
+        $sRaw = !$this->isNativeString($s) ? $s->getRaw() : $s;
 
-        return $this->getRaw() === $s;
+        return \strcmp($this->getRaw(), $sRaw) == 0 ? true : false;
+    }
+
+    /**
+     * Checking if first string is equal or greater then second one.
+     * 
+     * @param string|\Sebbls\Str\Str $s
+     * @return boolean
+     */
+    public function ge($s)
+    {
+        $sRaw = !$this->isNativeString($s) ? $s->getRaw() : $s;
+
+        return \strcmp($this->getRaw(), $sRaw) >= 0 ? true : false;
+    }
+
+    /**
+     * Checking if first string is greater then second one.
+     * 
+     * @param string|\Sebbls\Str\Str $s
+     * @return boolean
+     */
+    public function gt($s)
+    {
+        $sRaw = !$this->isNativeString($s) ? $s->getRaw() : $s;
+
+        return \strcmp($this->getRaw(), $sRaw) > 0 ? true : false;
+    }
+
+    /**
+     * Checking if first string is equal or less than second one.
+     * 
+     * @param string|\Sebbls\Str\Str $s
+     * @return boolean
+     */
+    public function le($s)
+    {
+        $sRaw = !$this->isNativeString($s) ? $s->getRaw() : $s;
+
+        return \strcmp($this->getRaw(), $sRaw) <= 0 ? true : false;
+    }
+
+    /**
+     * Checking if first string is less than second one.
+     * 
+     * @param string|\Sebbls\Str\Str $s
+     * @return boolean
+     */
+    public function lt($s)
+    {
+        $sRaw = !$this->isNativeString($s) ? $s->getRaw() : $s;
+
+        return \strcmp($this->getRaw(), $sRaw) < 0 ? true : false;
     }
 
     /**

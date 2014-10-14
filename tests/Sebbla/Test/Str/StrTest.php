@@ -26,19 +26,90 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Józef Piłsudski', $s1->add($s2));
     }
 
-    public function testEq()
+    /**
+     * @dataProvider equalityProvider
+     */
+    public function testEq($a, $b, $c)
     {
-        $s1 = new Str('Na stole leży ołówek grafitowy');
-        $expected1 = new Str('Na stole leży ołówek grafitowy');
-        $this->assertSame(true, $s1->eq($expected1));
-        $s2 = new Str('Zielona gęś');
-        $this->assertSame(true, $s2->eq('Zielona gęś'));
-        $s3 = new Str('Ala ma kota');
-        $expected3 = new Str('ala ma kota');
-        $this->assertSame(false, $s3->eq($expected3));
-        $s4 = new Str('Grzegorz Brzęczyszczykiewicz', 'UTF-7');
-        $expected4 = new Str('Grzegorz Brzęczyszczykiewicz');
-        $this->assertSame(false, $s4->eq($expected4));
+        $this->assertSame($a, $b->eq($c));
+    }
+
+    public function equalityProvider()
+    {
+        return array(
+            array(true, new Str('Ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(true, new Str('Ala ma ołówek'), 'Ala ma ołówek'),
+            array(false, new Str('Ala ma ołówek'), new Str('ala ma ołówek')),
+            array(false, new Str('Ala ma ołówek', 'UTF-7'), new Str('Ala ma ołówek')),
+        );
+    }
+
+    /**
+     * @dataProvider equalityGreaterEqualProvider
+     */
+    public function testGe($a, $b, $c)
+    {
+        $this->assertSame($a, $b->ge($c));
+    }
+
+    public function equalityGreaterEqualProvider()
+    {
+        return array(
+            array(true, new Str('Ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(true, new Str('ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(false, new Str('Ala ma ołówek'), 'ala ma ołówek'),
+        );
+    }
+
+    /**
+     * @dataProvider equalityGreaterProvider
+     */
+    public function testGt($a, $b, $c)
+    {
+        $this->assertSame($a, $b->gt($c));
+    }
+
+    public function equalityGreaterProvider()
+    {
+        return array(
+            array(false, new Str('Ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(true, new Str('ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(false, new Str('Ala ma ołówek'), 'ala ma ołówek'),
+        );
+    }
+
+    /**
+     * @dataProvider equalityLessEqualProvider
+     */
+    public function testLe($a, $b, $c)
+    {
+        $this->assertSame($a, $b->le($c));
+    }
+
+    public function equalityLessEqualProvider()
+    {
+        return array(
+            array(true, new Str('Ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(false, new Str('ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(true, new Str('Ala ma ołówek'), 'ala ma ołówek'),
+        );
+    }
+
+    /**
+     * @dataProvider equalityLessProvider
+     */
+    public function testLt($a, $b, $c)
+    {
+        $this->assertSame($a, $b->lt($c));
+    }
+
+    public function equalityLessProvider()
+    {
+        return array(
+            array(false, new Str('Ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(false, new Str('ala ma ołówek'), new Str('Ala ma ołówek')),
+            array(true, new Str('Ala ma ołówek'), 'ala ma ołówek'),
+        );
     }
 
     public function testContains()
