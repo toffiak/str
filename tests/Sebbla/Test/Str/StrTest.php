@@ -26,6 +26,21 @@ class StrTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Józef Piłsudski', $s1->add($s2));
     }
 
+    public function testEq()
+    {
+        $s1 = new Str('Na stole leży ołówek grafitowy');
+        $expected1 = new Str('Na stole leży ołówek grafitowy');
+        $this->assertSame(true, $s1->eq($expected1));
+        $s2 = new Str('Zielona gęś');
+        $this->assertSame(true, $s2->eq('Zielona gęś'));
+        $s3 = new Str('Ala ma kota');
+        $expected3 = new Str('ala ma kota');
+        $this->assertSame(false, $s3->eq($expected3));
+        $s4 = new Str('Grzegorz Brzęczyszczykiewicz', 'UTF-7');
+        $expected4 = new Str('Grzegorz Brzęczyszczykiewicz');
+        $this->assertSame(false, $s4->eq($expected4));
+    }
+
     public function testContains()
     {
         $s1 = new Str('Ala ma kota');

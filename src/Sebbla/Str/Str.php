@@ -8,14 +8,24 @@ use Sebbla\Str\Slice;
 class Str extends Type
 {
 
+    /**
+     * Encoding type.
+     * 
+     * @var string 
+     */
     private $encoding;
 
     function __construct($s, $encoding = "UTF-8")
     {
         $this->encoding = $encoding;
-        $this->s = ( $this->encoding === \mb_detect_encoding($s) ) ? $s : \mb_convert_encoding($s, $encoding);
+        $this->s = (string) ( $this->encoding === \mb_detect_encoding($s) ) ? $s : \mb_convert_encoding($s, $encoding);
     }
 
+    /**
+     * Human readable string.
+     * 
+     * @return string
+     */
     public function __toString()
     {
         return (string) $this->s;
@@ -29,6 +39,17 @@ class Str extends Type
     public function getRaw()
     {
         return $this->s;
+    }
+
+    /**
+     * Checking if a given string is PHP native string.
+     * 
+     * @param  string|\Sebbl\Str\Str $s
+     * @return boolean
+     */
+    protected function isNativeString($s)
+    {
+        return $s instanceof \Sebbla\Str\Str ? false : true;
     }
 
     /**
@@ -65,12 +86,12 @@ class Str extends Type
     /**
      * Checking if string contains string.
      * 
-     * @param string|\Sebbls\Str\Str $s
+     * @param string|\Sebbl\Str\Str $s
      * @return boolean
      */
     public function contains($s)
     {
-        if ($s instanceof \Sebbla\Str\Str) {
+        if (!$this->isNativeString($s)) {
             $s = $s->getRaw();
             if (true == \strpos($this->s, $s)) {
                 return true;
@@ -81,6 +102,21 @@ class Str extends Type
         }
 
         return false;
+    }
+
+    /**
+     * Checking if two strings are same.
+     * 
+     * @param string|\Sebbls\Str\Str $s
+     * @return boolean
+     */
+    public function eq($s)
+    {
+        if (!$this->isNativeString($s)) {
+            return $this->getRaw() === $s->getRaw();
+        }
+
+        return $this->getRaw() === $s;
     }
 
     /**
