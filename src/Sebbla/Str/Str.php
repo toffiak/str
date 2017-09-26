@@ -17,6 +17,7 @@ class Str extends Type
 
     function __construct($s, $encoding = "UTF-8")
     {
+	// Useless commit
         $this->encoding = $encoding;
         $this->s = (string) ( $this->encoding === \mb_detect_encoding($s) ) ? $s : \mb_convert_encoding($s, $encoding);
     }
