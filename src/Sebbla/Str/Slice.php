@@ -22,6 +22,7 @@ class Slice implements Sliceable
 
     public function __construct($type, $start = null, $stop = null, $step = 1)
     {
+        // komentarz
         $this->type = $type;
         $this->start = $start;
         $this->stop = $stop;
